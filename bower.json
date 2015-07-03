@@ -1,0 +1,14 @@
+{
+	"name": "routestate",
+	"version": "0.3.2",
+	"main": "RouteState.js",
+	"ignore": [
+		"**/.*",
+		"development",
+		".project"
+	],
+	"dependencies": {
+		"jquery": "~1.10.2"
+	},
+	"devDependencies": {}
+}
