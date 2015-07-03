@@ -16,9 +16,9 @@
             maximum-scale=1.0" />
 
 
-        <script src="node_modules/jquery/dist/jquery.min.js"></script>
-        <script src="node_modules/routestate/RouteState.js"></script>
-		<script src="node_modules/protocode/dist/application.js"></script>
+        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="../node_modules/routestate/RouteState.js"></script>
+		<script src="../dist/application.js"></script>
 
 		<!-- load in your components configuration -->
 		<script src="components.js"></script>
@@ -27,7 +27,12 @@
 			// break the cache for development
 			document.write(
 				"<link rel='stylesheet' type='text/css' "
-				+ "href='[YOUR_CSS]].css?"
+				+ "href='myapp/shell/shell.css?"
+				+ Math.random() + "'>"
+			);
+			document.write(
+				"<link rel='stylesheet' type='text/css' "
+				+ "href='myapp/dashboard/dashboard.css?"
 				+ Math.random() + "'>"
 			);
 

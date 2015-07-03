@@ -1,14 +1,15 @@
 {
-	"name": "routestate",
-	"version": "0.3.2",
-	"main": "RouteState.js",
+	"name": "protocode",
+	"version": "0.0.3",
+	"main": "dist/index.html",
 	"ignore": [
-		"**/.*",
-		"development",
+		"example",
+		"boilerplate",
 		".project"
 	],
 	"dependencies": {
-		"jquery": "~1.10.2"
+		"jquery": "~1.10.2",
+		"routestate": "0.3.2"
 	},
 	"devDependencies": {}
 }

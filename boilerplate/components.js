@@ -40,7 +40,7 @@ var components = {
 
 // Configuration for your RouteState routes...
 var route_configs = {
-    
+
     // main content area
     main_content:{
         weight: 10,

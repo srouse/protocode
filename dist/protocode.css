@@ -25,11 +25,11 @@ code {
     user-select: none;
 }
 
-.metacode {
+.protocode {
     width: 100%; height: 100%;
 
 }
-    .metacode_nav {
+    .protocode_nav {
         width: 300px; height: 100%;
         position: fixed;
         left: 0px; top: 0px;
