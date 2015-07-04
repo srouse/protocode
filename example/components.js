@@ -36,7 +36,8 @@ var route_configs = {
 
     // fake search results
     search_results:{
-        values:["show_results"]
+        values:["show_results"],
+        show_in_hash:false
     }
 
 }

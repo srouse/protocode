@@ -42,7 +42,7 @@ var components = {
 var route_configs = {
 
     // main content area
-    main_content:{
+    page:{
         weight: 10,
         values:[
             "dashboard",

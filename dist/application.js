@@ -3,6 +3,7 @@
 
 
 var init = function () {
+    RouteState.config( route_configs );
     RouteState.listenToHash( function ( route , prev_route ) {
         load_comps();
     });
