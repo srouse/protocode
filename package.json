@@ -2,10 +2,13 @@
   "name": "protocode",
   "description": "protocode",
   "author": "srouse",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "dependencies": {
     "jquery": "1.11.3",
-    "routestate": "0.3.2"
+    "routestate": "0.3.2",
+    "grunt":"0.4.5",
+    "grunt-contrib-watch": "0.6.1",
+    "grunt-contrib-concat" : "0.5.1"
   },
   "devDependencies": {},
   "main": "dist/index.html",

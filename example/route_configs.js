@@ -1,22 +1,7 @@
 
 
 
-var components = {
 
-    shell:{
-        url:"myapp/shell/shell.html",
-        css:"myapp/shell/shell.less",
-        target_ele:"body"
-    },
-
-
-    dashboard:{
-        url:"myapp/dashboard/dashboard.html",
-        css:"myapp/dashboard/dashboard.less",
-        target_ele:".myappMainContentContainer"
-    }
-
-};
 
 // Configuration for your RouteState routes...
 var route_configs = {

@@ -17,55 +17,25 @@
             initial-scale=1.0,
             maximum-scale=1.0" />
 
+        <!-- Your Configs -->
+		<script src="component_configs.js"></script>
+        <script src="route_configs.js"></script>
+
+        <!-- ProtoCode and Dependencies -->
         <script src="../node_modules/jquery/dist/jquery.min.js"></script>
         <script src="../node_modules/routestate/RouteState.js"></script>
-		<script src="components.js"></script>
 
-		<script src="../dist/Rainbow/js/rainbow.min.js"></script>
-		<script src="../dist/Rainbow/js/language/html.js"></script>
-		<script src="../dist/Rainbow/js/language/css.js"></script>
-		<link rel="stylesheet" type="text/css" media="screen"
-            	href="../dist/Rainbow/themes/blackboard.css" >
 		<script src="../dist/protocode.js"></script>
-		<link rel="stylesheet" type="text/css" media="screen"
-            	href="../dist/protocode.css" >
+        <link rel="stylesheet" type="text/css" href="../dist/protocode.css" >
 
+        <script>
+            new ProtoCode().init(
+                component_configs,
+                route_configs
+            );
+        </script>
 	</head>
 	<body>
-        <div class="protocode">
-            <div class="protocode_nav">
-                <div class="components"></div>
-                <div class="state"></div>
-                <div class="resizers">
-                    <div class="resizers_btn"
-                        onclick="$('.app')
-                            .removeClass()
-                            .addClass('app');
-							revealAppSize();">web</div>
-                    <div class="resizers_btn"
-                        onclick="$('.app')
-                            .removeClass()
-                            .addClass('app tablet');
-							revealAppSize();">tablet</div>
-                    <div class="resizers_btn"
-                        onclick="$('.app')
-                            .removeClass()
-                            .addClass('app mobile');
-							revealAppSize();">mobile</div>
-                </div>
-				<div class="size_display"></div>
-            </div>
-			<script>
-				document.write(
-					"<iframe src='application.html?v"
-					+ Math.random() + "' class='app' ></iframe>"
-				);
-			</script>
-        </div>
-		<div class="codeModal"
-			onclick="$(this).hide()">
-			<div class="codeModal_content"
-				onclick="event.stopPropagation()"></div>
-		</div>
+
 	</body>
 </html>
