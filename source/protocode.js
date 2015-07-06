@@ -229,7 +229,7 @@ ProtoCode.prototype.load_skipped = function() {
 ProtoCode.prototype.cleanUpStaleComps = function() {
     // clean up stale references
     for ( var comp_ele in this.all_comps ) {
-        if ( $(comp_ele).length == 0 ) {
+        if ( this.iframeDOM.find(comp_ele).length == 0 ) {
             delete this.all_comps[ comp_ele ];
         }
     }
@@ -272,9 +272,7 @@ ProtoCode.prototype.loadComp = function( comp_str , prev_comp_str ) {
         }
         this.cleanUpStaleComps();
     }
-
     this.compsChanged( this.all_comps );
-
 }
 ProtoCode.prototype.loadCompChildren = function( comp_str ) {
     var comp = this.component_configs[comp_str];
