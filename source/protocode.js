@@ -4,10 +4,17 @@ var ProtoCode = function(){};
 
 ProtoCode.prototype.init = function (
     component_configs,
-    route_configs
+    route_configs,
+    rivets_obj
 ) {
     this.component_configs = component_configs;
     this.route_configs = route_configs;
+
+    this.use_rivets = false;
+    if ( rivets_obj ) {
+        this.use_rivets = true;
+        this.rivets_obj = rivets_obj;
+    }
 
     //give some kind of hook (without a framework)
     document.protocode = this;
@@ -31,7 +38,6 @@ ProtoCode.prototype.init = function (
                 }
             );
         });
-
 
         $( window ).resize( function () {
             me.revealAppSize();
@@ -78,7 +84,6 @@ ProtoCode.prototype.render = function ( route , prev_route ) {
 
 
 ProtoCode.prototype.routeChanged = function ( route , prev_route ) {
-    //var html = ["width" + $(window).width() + "|height" + $(window).height()];
     var html = [];
 
     html.push(
@@ -235,23 +240,82 @@ ProtoCode.prototype.cleanUpStaleComps = function() {
     }
 }
 
+
+ProtoCode.prototype.revertEleContent = function ( domEle_str ) {
+    var domEle = this.iframeDOM.find( domEle_str );
+
+    // see if there was something there before
+    if (
+        domEle
+        && this.use_rivets
+        && domEle.data( "rivets_view" )
+    ) {
+        domEle.data( "rivets_view" ).unbind();
+    }
+
+    if ( domEle_str == "body" ) {
+        domEle.html( "" );
+    }else{
+        content = $("<div />");
+        domEle = content.replaceAll( domEle );
+        domEle.addClass( domEle_str.replace(/\./g,'') );
+    }
+}
+ProtoCode.prototype.changeEleContent = function ( domEle_str , content ) {
+    var domEle = this.iframeDOM.find( domEle_str );
+
+    // see if there was something there before
+    if (
+        domEle
+        && this.use_rivets
+        && domEle.data( "rivets_view" )
+    ) {
+        domEle.data( "rivets_view" ).unbind();
+    }
+
+    // body is special case
+    if ( domEle_str == "body" ) {
+        domEle.html( content );
+    }else{
+        content = $(content);
+        domEle = content.replaceAll( domEle );
+        domEle.addClass( domEle_str.replace(/\./g,'') );
+    }
+
+    if (
+        this.use_rivets
+    ) {
+        var view = rivets.bind( domEle , this.rivets_obj );
+        domEle.data( "rivets_view" ,  view );
+    }
+}
+
 ProtoCode.prototype.all_comps = {};
 ProtoCode.prototype.loadComp = function( comp_str , prev_comp_str ) {
     var comp = this.component_configs[comp_str];
 
     if ( !comp ) {
+
         var prev_comp = this.component_configs[prev_comp_str];
         if ( !prev_comp )
             return;
-        this.iframeDOM.find(prev_comp.target_ele).html("");
+
+        //var domEle = this.iframeDOM.find( prev_comp.target_ele );
+        this.revertEleContent(
+            prev_comp.target_ele
+        )
+
         delete this.all_comps[prev_comp.target_ele];
+
     }else{
 
         if ( this.iframeDOM.find( comp.target_ele ).length == 0 ) {
+
             this.skipped_comps[comp_str] = {
                 comp_str:comp_str,
                 prev_comp_str:prev_comp_str
             };
+
         }else if (
             comp_str != prev_comp_str ||
             this.skipped_comps[comp_str]
@@ -263,7 +327,11 @@ ProtoCode.prototype.loadComp = function( comp_str , prev_comp_str ) {
                 url : comp.url + "?" + Math.random()
                 ,dataType: "text"
                 ,success : function( content ) {
-                    me.iframeDOM.find( comp.target_ele ).html( content );
+                    me.changeEleContent(
+                        comp.target_ele,
+                        content
+                    )
+
                     me.load_skipped();//reload missed comps
                     me.loadCompChildren( comp_str );
                     me.cleanUpStaleComps();

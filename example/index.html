@@ -24,15 +24,28 @@
         <!-- ProtoCode and Dependencies -->
         <script src="../node_modules/jquery/dist/jquery.min.js"></script>
         <script src="../node_modules/routestate/RouteState.js"></script>
-
+		<script src="../node_modules/rivets/dist/rivets.bundled.min.js"></script>
 		<script src="../dist/protocode.js"></script>
         <link rel="stylesheet" type="text/css" href="../dist/protocode.css" >
 
         <script>
+
+			var rivets_obj = {
+				user:{name:"joey"},
+				hitme:function() {
+					alert("hi");
+				}
+			};
+
             new ProtoCode().init(
                 component_configs,
-                route_configs
+                route_configs,
+				rivets_obj
             );
+
+			setTimeout( function () {
+				rivets_obj.user.name = "Another name....";
+			}, 2000 );
         </script>
 	</head>
 	<body>
