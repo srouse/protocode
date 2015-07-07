@@ -2,7 +2,7 @@
   "name": "protocode",
   "description": "protocode",
   "author": "srouse",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "dependencies": {
     "jquery": "1.11.3",
     "routestate": "0.3.2",

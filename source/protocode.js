@@ -258,6 +258,7 @@ ProtoCode.prototype.revertEleContent = function ( domEle_str ) {
     }else{
         content = $("<div />");
         domEle = content.replaceAll( domEle );
+        // only class names are accepted for now...
         domEle.addClass( domEle_str.replace(/\./g,'') );
     }
 }
@@ -273,12 +274,25 @@ ProtoCode.prototype.changeEleContent = function ( domEle_str , content ) {
         domEle.data( "rivets_view" ).unbind();
     }
 
-    // body is special case
-    if ( domEle_str == "body" ) {
+    // body and empty content is special case
+    if (
+        domEle_str == "body"
+        || content == ""
+    ) {
         domEle.html( content );
     }else{
-        content = $(content);
-        domEle = content.replaceAll( domEle );
+        // protect against all kinds of validation failures....
+        try {
+            contentEle = $(content);
+        }catch( error ) {
+            contentEle = $("<div>" + content + "</div>");
+        }
+        // just strings make it through this...
+        if ( contentEle.length == 0 ) {
+            contentEle = $("<div>" + content + "</div>");
+        }
+
+        domEle = contentEle.replaceAll( domEle );
         domEle.addClass( domEle_str.replace(/\./g,'') );
     }
 

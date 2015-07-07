@@ -15,5 +15,9 @@ var component_configs = {
         url:"myapp/dashboard/dashboard.html",
         css:"myapp/dashboard/dashboard.less",
         target_ele:".myappMainContentContainer"
+    },
+    empty:{
+        url:"myapp/empty.html",
+        target_ele:".myappMainContentContainer"
     }
 };

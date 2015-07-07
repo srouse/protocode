@@ -10,7 +10,8 @@ var route_configs = {
     page:{
         weight: 10,
         values:[
-            "dashboard"
+            "dashboard",
+            "empty"
         ]
     },
 
