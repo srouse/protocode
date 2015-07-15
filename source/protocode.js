@@ -257,9 +257,16 @@ ProtoCode.prototype.revertEleContent = function ( domEle_str ) {
         domEle.html( "" );
     }else{
         content = $("<div />");
+        var prev_classes = domEle.attr("data-orig_classes");
         domEle = content.replaceAll( domEle );
-        // only class names are accepted for now...
-        domEle.addClass( domEle_str.replace(/\./g,'') );
+
+        // put the original class names back...
+        domEle.addClass( prev_classes );
+        // just in case this is called again
+        domEle.attr( "data-orig_classes" , prev_classes );
+
+        // was just adding the one classname before
+        // domEle.addClass( domEle_str.replace(/\./g,'') );
     }
 }
 ProtoCode.prototype.changeEleContent = function ( domEle_str , content ) {
@@ -292,8 +299,16 @@ ProtoCode.prototype.changeEleContent = function ( domEle_str , content ) {
             contentEle = $("<div>" + content + "</div>");
         }
 
+        var prev_classes = domEle.attr("class");
         domEle = contentEle.replaceAll( domEle );
-        domEle.addClass( domEle_str.replace(/\./g,'') );
+
+        // replace all class names...
+        domEle.addClass( prev_classes );
+        // save clean list for pulling content out
+        domEle.attr( "data-orig_classes" , prev_classes );
+
+        // was just adding the one classname before
+        // domEle.addClass( domEle_str.replace(/\./g,'') );
     }
 
     if (
